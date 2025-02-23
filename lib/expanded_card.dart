@@ -1,8 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
+//! usando SizeTransition indicado pela madô
 
 class ExpandedCard extends StatefulWidget {
   bool isOpen;
@@ -27,7 +28,6 @@ class _ExpandedCardState extends State<ExpandedCard>
   late Animation<double> _angleAnimation;
   late Animation<Color?> _colorAnimation;
   late Animation<double> _heightFactorAnimation;
-  late Animation<double> _heightContainer;
   late Animation<double> _sizeAnimation;
 
   
@@ -57,10 +57,7 @@ class _ExpandedCardState extends State<ExpandedCard>
       end: 1,
     ).animate(_animationController);
 
-    _heightContainer = Tween<double>(
-      begin: 0,
-      end: 70,
-    ).animate(_animationController);
+    
 
     _sizeAnimation = Tween<double>(
       begin: 0,
@@ -123,7 +120,6 @@ class _ExpandedCardState extends State<ExpandedCard>
           child: SizeTransition(
             sizeFactor: _sizeAnimation,
             child: Container(
-              // height: _heightContainer.value,
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: Text(
                 widget.text,
